@@ -5,6 +5,7 @@ const foodSchema = new mongoose.Schema({
     type: String, 
     required: true,
   },
+  edible: Boolean,
 });
 
 const userSchema = mongoose.Schema({

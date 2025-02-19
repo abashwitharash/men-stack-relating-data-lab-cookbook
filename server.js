@@ -32,6 +32,8 @@ app.use(
   })
 );
 
+
+
 app.get('/', (req, res) => {
   res.render('index.ejs', {
     user: req.session.user,
@@ -39,10 +41,12 @@ app.get('/', (req, res) => {
 });
 
 
-app.use('/auth', authController);
-app.use('/users/:userId/foods', foodsController);
 app.use(passUserToView);
+app.use('/auth', authController);
 app.use(isSignedIn);
+app.use('/users/:userId/foods', foodsController);
+
+
 
 app.listen(port, () => {
   console.log(`The express app is ready on port ${port}!`);
