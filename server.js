@@ -32,16 +32,23 @@ app.use(
   })
 );
 
-
-
-app.get('/', (req, res) => {
-  res.render('index.ejs', {
-    user: req.session.user,
-  });
-});
-
-
 app.use(passUserToView);
+
+app.get('/', async (req, res) => {
+  if (req.session.user) {
+   res.redirect(`/users/${req.session.user._id}/foods`);  
+  } else {
+   res.render("index.ejs");
+  }
+ });
+
+// app.get('/', (req, res) => {
+//   res.render('index.ejs', {
+//     user: req.session.user,
+//   });
+// });
+
+
 app.use('/auth', authController);
 app.use(isSignedIn);
 app.use('/users/:userId/foods', foodsController);
