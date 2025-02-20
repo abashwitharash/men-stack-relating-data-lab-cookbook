@@ -42,12 +42,6 @@ app.get('/', async (req, res) => {
   }
  });
 
-// app.get('/', (req, res) => {
-//   res.render('index.ejs', {
-//     user: req.session.user,
-//   });
-// });
-
 
 app.use('/auth', authController);
 app.use(isSignedIn);
